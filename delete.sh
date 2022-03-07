@@ -21,19 +21,17 @@ if [ -s delDir.txt ]
 then
        #Check the deploymode if it is through package.xml or path
     git diff --diff-filter=D --name-only --pretty="" origin/master...origin/sfdx $INCLUSIONLIST | paste -d, -s - | xargs -0 sfdx force:source:convert -r force-app -d delDir -p
-    ls -la delDir/classes
     #echo "*****Begin Package.xml*******"
     mv delDir/package.xml delDir/destructiveChanges.xml
     echo '<?xml version="1.0" encoding="UTF-8"?>
-<Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <version>54.0</version>
-</Package>' > delDir/package.xml
+          <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+          <version>52.0</version>
+         </Package>' > delDir/package.xml
 
-    cat delDir/destructiveChanges.xml
-    echo "-----------------------------------"
-    cat delDir/package.xml
+    mkdir sfdxDel
+    cp delDir/package.xml delDir/destructiveChanges.xml /sfdxDel
     #echo "*****End Package.xml*******"
-    $sfdx force:mdapi:deploy -d delDir -u rajeshkumar15191@gmail.com.idp -w 40
+    $sfdx force:mdapi:deploy -d sfdxDel -u rajeshkumar15191@gmail.com.idp -w 40
     if [ $? -eq 0 ]; then
         echo -e "\e[32m************************** Success **************************"
     else
