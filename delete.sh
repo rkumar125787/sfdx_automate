@@ -20,7 +20,7 @@ git  diff --diff-filter=D --name-only origin/master...origin/sfdx $INCLUSIONLIST
 if [ -s delDir.txt ]
 then
        #Check the deploymode if it is through package.xml or path
-    git diff --diff-filter=D --name-only --pretty="" origin/master...origin/devlop $INCLUSIONLIST | paste -d, -s - | xargs -0 ${sfdx} force:source:convert -r force-app -d delDir -p
+    git diff --diff-filter=D --name-only --pretty="" origin/master...origin/sfdx $INCLUSIONLIST | paste -d, -s - | xargs -0 sfdx force:source:convert -r force-app -d delDir -p
     ls -la delDir/classes
     #echo "*****Begin Package.xml*******"
     mv delDir/package.xml delDir/destructiveChanges.xml
@@ -36,7 +36,7 @@ then
     cp delDir/destructiveChanges.xml dpl/destructiveChanges.xml
     cp delDir/destructiveChanges.xml dpl/package.xml
     #echo "*****End Package.xml*******"
-    ${sfdx} force:mdapi:deploy -d dpl -u rajeshkumar15191@gmail.com.idp -w 40
+    $sfdx force:mdapi:deploy -d dpl -u rajeshkumar15191@gmail.com.idp -w 40
     if [ $? -eq 0 ]; then
         echo -e "\e[32m************************** Success **************************"
     else
