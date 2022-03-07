@@ -13,8 +13,8 @@ done
 echo $INCLUSIONLIST
 
 #*****Checkout to Git Source Branch and Find the difference of a file in comma seprated way
-git  diff --diff-filter=D --name-status origin/master...origin/devlop $INCLUSIONLIST
-git  diff --diff-filter=D --name-only origin/master...origin/devlop $INCLUSIONLIST | tr '\n' ',' | sed 's/\(.*\),/\1 /' > delDir.txt
+git  diff --diff-filter=D --name-status origin/master...origin/sfdx $INCLUSIONLIST
+git  diff --diff-filter=D --name-only origin/master...origin/sfdx $INCLUSIONLIST | tr '\n' ',' | sed 's/\(.*\),/\1 /' > delDir.txt
 #Check if difference exist using file contents
 if [ -s delDir.txt ]
 then
