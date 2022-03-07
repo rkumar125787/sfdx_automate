@@ -32,11 +32,8 @@ then
     cat delDir/destructiveChanges.xml
     echo "-----------------------------------"
     cat delDir/package.xml
-    mkdir dpl
-    cp delDir/destructiveChanges.xml dpl/destructiveChanges.xml
-    cp delDir/destructiveChanges.xml dpl/package.xml
     #echo "*****End Package.xml*******"
-    $sfdx force:mdapi:deploy -d dpl -u rajeshkumar15191@gmail.com.idp -w 40
+    $sfdx force:mdapi:deploy -d delDir -u rajeshkumar15191@gmail.com.idp -w 40
     if [ $? -eq 0 ]; then
         echo -e "\e[32m************************** Success **************************"
     else
