@@ -1,1 +1,0 @@
-force-app/main/default/classes/testClass.cls,force-app/main/default/classes/testClass.cls-meta.xml 
